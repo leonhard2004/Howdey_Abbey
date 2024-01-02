@@ -21,7 +21,8 @@ label start:
     a "Uhm.. Papi?"
     show s1 p3
     a "Ich hab überlegt..."
-    a "weil, also, ... ich bin ja jetzt schon sieben und wollte daher fragen ob ich-"
+    a "weil, also, ... ich bin ja jetzt schon sieben und wollte daher fragen ob ich-" #text evtl nacheinander erschienen lassen
+    a "test"
     
 
 
