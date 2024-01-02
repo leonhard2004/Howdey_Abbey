@@ -2,16 +2,28 @@
 
 # Bestimmen Sie Grafiken unterhalb dieser Zeile, indem Sie die "Image-Statements" verwenden.
 # z. B. image eileen happy = "eileen_happy.png"
-
+image s1 p1 = im.Scale("S1P1.png", 1920, 1080)
+image s1 p2 = im.Scale("S1P2.png", 1920, 1080)
+image s1 p3 = im.Scale("S1P3.png", 1920, 1080)
 # Bestimmen Sie Charaktere, die in diesem Spiel verwendet werden.
-define e = Character('Eileen', color="#c8ffc8")
-
+define a = Character('ABBEY', color="#f5910e")
+define b = Character('Billy', color="#271b1b")
+define e = Character('Eduardo', color = "#5f3719")
 
 # Hier beginnt das Spiel.
 label start:
+#Szene 1
+#Du, Deine, Dich groß schreiben!
+    show s1 p1
+    "..."
+    show s1 p2
+    a ""
+    a "Uhm.. Papi?"
+    show s1 p3
+    a "Ich hab überlegt..."
+    a "weil, also, ... ich bin ja jetzt schon sieben und wollte daher fragen ob ich-"
+    
 
-    e "Du hast ein neues Ren'Py Spiel erstellt."
 
-    e "Sobald du eine Geschichte, Bilder und Musik hinzufügst, kannst du es für alle veröffentlichen!"
 
     return
