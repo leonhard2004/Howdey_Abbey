@@ -105,7 +105,7 @@ define gui.game_menu_background = "gui/game_menu.png"
 ## angezeigt wird.
 
 ## Die Höhe des Textfeldes, das den Dialog enthält.
-define gui.textbox_height = 278
+define gui.textbox_height = 229
 
 ## Die Platzierung des Textfeldes vertikal auf dem Bildschirm. 0.0 ist der obere
 ## Rand, 0.5 ist die Mitte und 1.0 ist der untere Rand.
