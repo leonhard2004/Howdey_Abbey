@@ -6,11 +6,11 @@ image s1 p1 = im.Scale("S1P1.png", 1920, 1080)
 image s1 p2 = im.Scale("S1P2.png", 1920, 1080)
 image s1 p3 = im.Scale("S1P3.png", 1920, 1080)
 # Bestimmen Sie Charaktere, die in diesem Spiel verwendet werden.
-define a = Character('ABBEY', color="#f5910e")
-define b = Character('BILLY', color="#181212")
-define e = Character('EDUARDO', color="#574333")
-define n = Character('NACHBAR', color="#42bb1d")
-define s = Character('SALLY', color="#aa8b76") #Pony
+define a = Character('ABBEY', color="#f5440e")
+define b = Character('BILLY', color="#0b4958")
+define e = Character('EDUARDO', color="#135806")
+define n = Character('NACHBAR', color="#747474")
+define s = Character('SALLY', color="#703d19") #Pony
 
 #Du, Deine, Dich groß schreiben!
 # Hier beginnt das Spiel.
@@ -33,14 +33,21 @@ label start:
     
     "..."
 
-    e "Hört auf!"
+    e "Hört auf."
 
     b "..."
 
     e "Kleines hör zu. Du kriegst Deine Chance."
     e "Pass morgen auf die Tiere auf. Dann darfst Du mit ausreiten."
 
-    a "pfft" #streckt die Zunge aus
+    menu:
+        "Bedank dich.":
+            "..." #a schaut e mit großen augen an
+
+            a "Danke Papi!!!"
+
+        "Streck Billy die Zunge raus.":
+            a "pfft" #streckt die Zunge raus
 
     b "Dad, bist Du-"
 
@@ -67,9 +74,9 @@ label start:
 
     n "Guten Morgen Sheriff!"
 
-    e "..." #tippt seinen Hut
+    e "Morgen" #tippt seinen Hut
 
-    a "..." #tippt Hut
+    a "Guten Morgen!" #tippt Hut
 
 #Szene 3
     "..." #Weide
@@ -97,33 +104,138 @@ label start:
 
     "..." #drückt pfahl tiefer
 
-    "..." #hält gras hin
+    python:
+        spielen1 = False
+        füttern = False
 
-    a "Komm schon. Ist frisch!"
+    menu:
+        "Wie vertreibst du dir die Zeit?"
 
-    "..." #kein tier reagiert
+        "Spielen":
+            jump spielen1
 
-    "..." #a sitzt vor zaun
+        "Tiere füttern":
+            jump tiereFüttern1
+            
+        "Nichts tun":
+            jump warten
 
-    "..." #a spielt mit puppe
+    label spielen1:
+        "..." #a spielt mit puppe
+
+        a "seufz" 
+        python:
+            spielen1 = True  
+        menu:
+            "Wie vertreibst du dir die Zeit?"
+
+            "Spielen":
+                jump spielen2
+            
+            "Tiere Füttern" if füttern == False:
+                jump tiereFüttern1
+            "Tiere Füttern" if füttern == True:
+                jump tiereFüttern2
+
+            "Nichts tun.":
+                jump warten   
     
-    "..." #a hält s möhre hin
+    label spielen2:
+        "*musik*" #a spielt mit flöte, läuft zaun entlang
+        
+        a "seufz"
+        python:
+            spielen2 = True
+        menu:
+            "Wie vertreibst du dir die Zeit?"
+            
+            "Tiere Füttern" if füttern == False:
+                jump tiereFüttern1
+            "Tiere Füttern" if füttern == True:
+                jump tiereFüttern2
+            
+            "Nichts tun.":
+                jump warten
 
-    "..." #s nimmt möhre
+    label spielen3:
+        "*musik*" #a spielt mit flöte, läuft zaun entlang
 
-    a "Ja endlich!"
+        "*musik*" #s folgt ihr
+        jump pony
 
-    "*musik*" #a spielt mit flöte, läuft zaun entlang
+    label tiereFüttern1:
+        "..." #hält gras hin
 
-    "*musik*" #s folgt ihr
+        a "Komm schon. Ist frisch!"
 
-    "..." #a liegt, pony stupst sie an
+        "..." #kein tier reagiert
+        python:
+            füttern = True
+        menu:
+            "Wie vertreibst du dir die Zeit?"
 
-    "..." #a dreht sich um
+            "Spielen" if spielen1 == False:
+                jump spielen1
+            "Spielen" if spielen1 == True:
+                jump spielen2
+            
+            "Tiere Füttern":
+                jump tiereFüttern2
 
-    "..." #a schaut s an und schüttelt kopf
+            "Nichts tun.":
+                jump warten   
 
-#Szene 5
+    label tiereFüttern2:
+        "..." #a hält s möhre hin
+
+        "..." #s nimmt möhre
+
+        a "Ja endlich!"
+        menu:
+                "Was tust du?"
+
+                "Spielen":
+                    jump spielen3
+                
+                "Nichts tun.":
+                    jump pony   
+
+
+    label warten:
+        "..." #a liegt vor Zaun, Hut tief im Gesicht, Grashalm im Mund
+
+            #fade to black
+    #Szene 5
+        "..." #a schläft
+        
+        "..." #ein schatten fällt über a
+
+        "..." #e weckt sie
+
+        e "Sheriffs schlafen nie, Kleines."
+
+        a "Aber.. ich... nein das-!"
+
+        e "Komm mit Kleines."
+        e "Ist meine Schuld"
+        e "Deine Füße passen nicht in die Stiefel eines Sheriffs."
+        
+        "SLEEPY ENDING"
+        return
+        #SLEEPY ENDING
+
+    label pony:
+        "..." #a liegt vor Zaun, Hut tief im Gesicht, Grashalm im Mund
+
+        s "..." #s stupst a an
+
+        "..." #a dreht sich um, schüttelt kopf
+        jump szene6
+     
+    
+
+#Szene 6
+label szene6:
     "..." #bulle schläft
 
     a "So sieht man sich wieder, Bulle Bill"

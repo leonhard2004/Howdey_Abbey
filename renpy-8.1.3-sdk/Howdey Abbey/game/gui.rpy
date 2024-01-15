@@ -28,7 +28,7 @@ define config.check_conflicting_properties = True
 
 ## Eine Akzentfarbe, die in der gesamten Benutzeroberfläche zur Beschriftung und
 ## Hervorhebung von Text verwendet wird.
-define gui.accent_color = '#cc6600'
+define gui.accent_color = '#e94504'
 
 ## Die Farbe, die für eine Textschaltfläche verwendet wird, wenn sie weder
 ## ausgewählt ist noch mit dem Mauszeiger bewegt wird.
@@ -65,13 +65,13 @@ define gui.interface_text_color = '#ffffff'
 ## Schriftarten und Schriftgrößen ##############################################
 
 ## Die für den Text im Spiel verwendete Schriftart.
-define gui.text_font = "DejaVuSans.ttf"
+define gui.text_font = "playtime.ttf"
 
 ## Die für Zeichennamen verwendete Schriftart.
-define gui.name_text_font = "DejaVuSans.ttf"
+define gui.name_text_font = "playtime.ttf"
 
 ## Die Schriftart, die für den Text außerhalb des Spiels verwendet wird.
-define gui.interface_text_font = "DejaVuSans.ttf"
+define gui.interface_text_font = "playtime.ttf"
 
 ## Die Größe des normalen Dialogtextes.
 define gui.text_size = 33
@@ -116,7 +116,7 @@ define gui.textbox_yalign = 1.0
 ## Dies kann eine ganze Anzahl von Pixeln von links oder oben sein, oder 0,5 bis
 ## zur Mitte.
 define gui.name_xpos = 360
-define gui.name_ypos = 0
+define gui.name_ypos = 10
 
 ## Die horizontale Ausrichtung des Namens des Zeichens. Dies kann 0.0 für
 ## linksbündig, 0.5 für zentriert und 1.0 für rechtsbündig sein.
