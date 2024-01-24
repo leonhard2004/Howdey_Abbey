@@ -94,6 +94,7 @@ label start:
     
 
 #Szene 2
+    play music "Hayden Folker - The Journey.mp3" fadein 1.0 volume 0.5
     show s2 p1 with fade
     ""
     show s2 p2
@@ -147,7 +148,7 @@ label start:
         füttern = False
 
     menu:
-        " "
+        a "*seufz* Mann, ist das langweilig..."
 
         "Mit Puppe spielen":
             jump spielen1
@@ -161,7 +162,7 @@ label start:
     #Szene 4.1
     label spielen1:
         show s4_1 p1
-        a "seufz" 
+        a "*seufz*" 
         python:
             spielen1 = True  
         menu:
@@ -214,7 +215,7 @@ label start:
         show s4_2 p2
         ""
         show s4_2 p3
-        "Komm schon. Ist frisch!" #kein tier reagiert
+        a "Komm schon. Ist frisch!" #kein tier reagiert
         show s4_2 p4
         "..."
         python:
@@ -253,6 +254,7 @@ label start:
 
     #Szene 4.3
     label warten:
+        play music "A Nomad's Journey.mp3" fadein 1.0 volume 0.5
         show s4_3 p1
         "" #a liegt vor Zaun, Hut tief im Gesicht, Grashalm im Mund
     #Szene 5
@@ -301,6 +303,7 @@ label szene6:
     show s6 p8
     ""
     show s6 p9
+    play sound "flute.wav" fadein 0.4 volume 0.3
     "*fiiiiiieeeeeep*" #s bäumt sich auf
     show s6 p10
     "" #bulle rennt
@@ -337,8 +340,8 @@ label szene6:
         a "Papi... ich.. der Stier! und-!"
         show s7 p6
         e "Beruhig dich. Ist meine Schuld -"
-        e "Billy hatte recht."
-        e "Deine Stiefel passen nicht in die Stiefel eines Sheriffs."
+        e "Billy hatte Recht."
+        e "Deine Füße passen nicht in die Stiefel eines Sheriffs."
         show s7 p7
         ""
         return
@@ -348,41 +351,20 @@ label szene6:
 
         "AAAAHHH! Hilfe!" #geschrei vom dorfeingang
 
-        "..." #tiere rennen durch dorf
-
-        "..." #bewohner rennen in ihre häuser
-
-        "..." #bulle rennt stände um
-
-        "..." #a reitet auf s tieren hinterher
+        "" #tiere rennen durch dorf
 
         a "Geht alle nach Hause!"
 
-        "..." #a wirft lasso neben kuh
-
-        "..." #bulle verfolgt kind
-
-        "..." #kind rennt zu tür
-
-        "..." #kind hämmert an tür
-
-        "..." #bulle nimmt anlauf
-        
-        "..." #a reitet zu ihm
+        ""
 
         b "Was zum-? Bist du- Abbey! Warte!"
 
-        "..." #b rennt zu veranda
+        ""
 
         b "Abbey! - komm da weg! Warte auf Dad!" #b schaut runter
 
-        "..." #b sieht skorpion
+        ""
 
-        "..." #a kommt zum halt
-
-        "..." #kind schaut a an
-
-        "..." #bulle scharrt
         menu:
             " "
 
@@ -403,11 +385,8 @@ label szene6:
         ""
         return
     label szene8_3:
-        
-
-
-
-        "*fiiiiiieeeeeep" #a blässt in flöte
+        play sound "flute.wav" fadein 0.4 volume 0.3
+        "*fiiiiiieeeeeep*" #a blässt in flöte
 
         "*fiiiiiieeeeeep*" #kind hält sich ohren zu
 
