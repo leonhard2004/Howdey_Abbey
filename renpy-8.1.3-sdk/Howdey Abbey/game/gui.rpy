@@ -28,7 +28,7 @@ define config.check_conflicting_properties = True
 
 ## Eine Akzentfarbe, die in der gesamten Benutzeroberfläche zur Beschriftung und
 ## Hervorhebung von Text verwendet wird.
-define gui.accent_color = '#e94504'
+define gui.accent_color = '#f1d34c'
 
 ## Die Farbe, die für eine Textschaltfläche verwendet wird, wenn sie weder
 ## ausgewählt ist noch mit dem Mauszeiger bewegt wird.
@@ -73,6 +73,8 @@ define gui.name_text_font = "playtime.ttf"
 ## Die Schriftart, die für den Text außerhalb des Spiels verwendet wird.
 define gui.interface_text_font = "playtime.ttf"
 
+define gui.title_text_font = "glecb.ttf"
+
 ## Die Größe des normalen Dialogtextes.
 define gui.text_size = 33
 
@@ -89,7 +91,7 @@ define gui.label_text_size = 36
 define gui.notify_text_size = 24
 
 ## Die Größe des Titels des Spiels.
-define gui.title_text_size = 75
+define gui.title_text_size = 120
 
 
 ## Haupt- und Spielmenü ########################################################
