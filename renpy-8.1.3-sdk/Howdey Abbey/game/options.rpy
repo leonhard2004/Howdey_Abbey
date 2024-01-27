@@ -25,7 +25,7 @@ define gui.show_name = True
 
 ## Die Version des Spiels.
 
-define config.version = "1.0"
+define config.version = "1.1"
 
 
 ## Text, der auf dem Info-Bildschirm des Spiels erscheint. Setzen Sie den Text
@@ -66,7 +66,7 @@ define config.has_voice = True
 ## the player is at the main menu. Diese Datei wird im Spiel weiter abgespielt,
 ## bis sie gestoppt wird oder eine andere Datei abgespielt wird.
 
-# define config.main_menu_music = "main-menu-theme.ogg"
+#define config.main_menu_music = "main-menu-theme.ogg"
 
 
 ## Übergänge ###################################################################

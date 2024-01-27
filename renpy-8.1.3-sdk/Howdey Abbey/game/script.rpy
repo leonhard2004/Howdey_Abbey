@@ -37,6 +37,7 @@ define e = Character('EDUARDO', color="#31611e")
 define n = Character('NACHBARIN', color="#61dfff")
 define k = Character('NACHBARSKIND', color="#9aff6b")
 define s = Character('SALONBESITZER', color="#811414")
+define d = Character('DORFBEWOHNER', color="#9b9b9b")
 
 #Du, Deine, Dich groß schreiben!
 # Hier beginnt das Spiel.
@@ -57,7 +58,7 @@ label start:
     b "Wann blickst Du, dass Du zu jung bist?"
     show s1 p7
     a "Du bist nicht Papi."
-    b "Muss ich auch nicht um zu wissen, dass Du viel zu-"
+    b "Muss ich auch nicht, um zu wissen, dass Du viel zu-"
     show s1 p8
     "*bumm*"
     show s1 p9
@@ -90,16 +91,15 @@ label start:
     e "Morgen Sonnenaufgang, hier. Ja?"
     show s1 p18
     "" #a nickt schnell
-    hide s1 p18 with fade
     
 
 #Szene 2
     play music "Hayden Folker - The Journey.mp3" fadein 1.0 volume 0.5
     show s2 p1 with fade
     ""
-    show s2 p2
+    show s2 p2 
     "" #e auf pferd
-    show s2 p3
+    show s2 p3 with dissolve
     "" #a schaut an e vorbei
     show s2 p4
     "*bling*" #fokus auf E's stern
@@ -117,12 +117,12 @@ label start:
 #Szene 3
     show s3 p1 with fade
     "" #Weide
-    show s3 p2
-    pause
-    show s3 p3
-    pause
-    show s3 p4
-    pause
+    show s3 p2 with dissolve
+    ""
+    show s3 p3 with dissolve
+    ""
+    show s3 p4 with dissolve
+    ""
     show s3 p5
     e "So, Kleines."
     show s3 p6
@@ -131,20 +131,21 @@ label start:
     e "Mach mich stolz."
     show s3 p8
     "" #e steigt auf
-    show s3 p9
+    show s3 p9 with dissolve
     "" #beide tippen ihren hut
 
 #Szene 4
     show s4 p1 with fade
     pause
-    show s4 p2
+    show s4 p2 with dissolve
     pause
-    show s4 p3
+    show s4 p3 with dissolve
     pause
-    show s4 p4
+    show s4 p4 with dissolve
     pause
     python:
         spielen1 = False
+        spielen2 = False
         füttern = False
 
     menu:
@@ -161,7 +162,7 @@ label start:
 
     #Szene 4.1
     label spielen1:
-        show s4_1 p1
+        show s4_1 p1 with dissolve
         a "*seufz*" 
         python:
             spielen1 = True  
@@ -169,23 +170,23 @@ label start:
             " "
 
             "Flöte spielen":
-                hide s4_1
+                #hide s4_1
                 jump spielen2          
             "Tiere füttern" if füttern == False:
-                hide s4_1
+                #hide s4_1
                 jump tiereFüttern1
             "Möhre verfüttern" if füttern == True:
-                hide s4_1
+                #hide s4_1
                 jump tiereFüttern2
             "Nichts tun.":
-                hide s4_1
+                #hide s4_1
                 jump warten   
     
     #Szene 4.4
     label spielen2:
-        show s4_4 p1
+        show s4_4 p1 with dissolve 
         "*musik*" #a spielt mit flöte, läuft zaun entlang
-        show s4_4 p2
+        show s4_4 p2 with dissolve
         "*musik*"
         python:
             spielen2 = True
@@ -193,26 +194,26 @@ label start:
             " "
             
             "Tiere füttern" if füttern == False:
-                hide s4_4
+                #hide s4_4
                 jump tiereFüttern1
             "Möhre verfüttern" if füttern == True:
-                hide s4_4
+                #hide s4_4
                 jump tiereFüttern2
             "Nichts tun.":
-                hide s4_4
+                #hide s4_4
                 jump warten
     #Szene 4.6
     label spielen3:
-        show s4_6 p1
+        show s4_6 p1 with dissolve
         "𝅘𝅥 𝅘𝅥𝅯𝅘𝅥𝅯" #a spielt mit flöte, läuft zaun entlang
-        show s4_6 p2
+        show s4_6 p2 with dissolve
         "𝅘𝅥𝅯𝅘𝅥𝅮 𝅘𝅥𝅯" #s folgt ihr
         jump pony
     #Szene 4.2
     label tiereFüttern1:
-        show s4_2 p1
+        show s4_2 p1 with dissolve
         "" #hält gras hin
-        show s4_2 p2
+        show s4_2 p2 with dissolve
         ""
         show s4_2 p3
         a "Komm schon. Ist frisch!" #kein tier reagiert
@@ -225,31 +226,33 @@ label start:
             " "
 
             "Mit Puppe spielen" if spielen1 == False:
-                hide s4_2
+                #hide s4_2
                 jump spielen1
-            "Flöte spielen" if spielen1 == True:
-                hide s4_2
+            "Flöte spielen" if spielen1 == True and spielen2 == False:
+                #hide s4_2
                 jump spielen2
             
             "Möhre verfüttern":
-                hide s4_2
+                #hide s4_2
                 jump tiereFüttern2
 
             "Nichts tun.":
-                hide s4_2
+                #hide s4_2
                 jump warten   
     #Szene 4.5
     label tiereFüttern2:
         show s4_5 p1
         a "Ja endlich!"
+        show s4_5 p2
+        ""
         menu:
                 " "
 
-                "Spielen":
-                    hide s4_5
+                "Für das Pony Flöte spielen":
+                    #hide s4_5
                     jump spielen3
                 "Nichts tun.":
-                    hide s4_5
+                    #hide s4_5
                     jump pony   
 
     #Szene 4.3
@@ -270,16 +273,16 @@ label start:
         e "Komm mit Kleines."
         e "Ist meine Schuld."
         e "Deine Füße passen nicht in die Stiefel eines Sheriffs."
-        show s5 p6
+        show s5 p6 with dissolve
         ""
         return
         #SLEEPY ENDING
     #Szene 4.7
     label pony:
         show s4_7 p1 with fade
-        "" #a liegt vor Zaun, Hut tief im Gesicht, Grashalm im Mund
-        show s4_7 p2
-        a "hm?" #s stupst a an
+        "*stups*" #a liegt vor Zaun, Hut tief im Gesicht, Grashalm im Mund
+        show s4_7 p2 with dissolve
+        a "hmm?" #s stupst a an
         jump szene6
      
     
@@ -302,22 +305,22 @@ label szene6:
     a "Du bist festgenommen!"
     show s6 p8
     ""
-    show s6 p9
+    show s6 p9 with dissolve
     play sound "flute.wav" fadein 0.4 volume 0.3
     "*fiiiiiieeeeeep*" #s bäumt sich auf
     show s6 p10
     "" #bulle rennt
     show s6 p11
-    "" #chaos
+    a "AAAH!" #chaos
     show s6 p12
     "KRACH!" #bulle zerstört tor
     show s6 p13
     "" #a sitzt und fängt an zu weinen
-    show s6 p14
+    show s6 p14 with dissolve
     "" #s stupst a an
     show s6 p15
     ""
-    show s6 p16
+    show s6 p16 with dissolve
     ""
     menu:
         " "
@@ -333,8 +336,8 @@ label szene6:
         show s7 p3 with dissolve
         ""
         show s7 p4
-        e "Sheriffs stehen zu ihren Fehlern, Kleines"
-        show s7 p5
+        e "Sheriffs stehen zu ihren Fehlern, Kleines."
+        show s7 p5 with dissolve
         a "Papi..."
         a "Papi... ich.."
         a "Papi... ich.. der Stier! und-!"
@@ -342,32 +345,44 @@ label szene6:
         e "Beruhig dich. Ist meine Schuld -"
         e "Billy hatte Recht."
         e "Deine Füße passen nicht in die Stiefel eines Sheriffs."
-        show s7 p7
+        show s7 p7 with dissolve
         ""
         return
 #Szene 8    
     label szene8:
+        show s8_1 p1 with fade
         b "da da dam daaa da dam" 
-
-        "AAAAHHH! Hilfe!" #geschrei vom dorfeingang
-
+        show s8_1 p2 with dissolve
+        d "AAAAHHH! Hilfe!" #geschrei vom dorfeingang
+        show s8_1 p3 with dissolve
         "" #tiere rennen durch dorf
-
+        show s8_1 p4
+        ""
+        show s8_1 p5
+        ""
+        show s8_1 p6
+        ""
+        show s8_1 p7
         a "Geht alle nach Hause!"
-
+        show s8_1 p8
         ""
-
-        b "Was zum-? Bist du- Abbey! Warte!"
-
+        show s8_1 p9
+        k "Hilfe!"
+        show s8_1 p10
         ""
-
-        b "Abbey! - komm da weg! Warte auf Dad!" #b schaut runter
-
+        show s8_1 p11
+        b "Was zum-?"
+        b "Was zum-? Bist du-"
+        show s8_1 p12
+        b "Abbey! Warte!"
+        show s8_1 p13
+        b "Abbey! - komm da weg! Warte auf Dad!"
+        show s8_1 p14
         ""
-
+        show s8_1 p15
+        ""
         menu:
             " "
-
             "Bulle-Bill anschreien":
                 jump szene8_2
             "In Flöte pusten":
@@ -385,72 +400,86 @@ label szene6:
         ""
         return
     label szene8_3:
+        show s8_3 p1
+        ""
+        show s8_3 p2
         play sound "flute.wav" fadein 0.4 volume 0.3
         "*fiiiiiieeeeeep*" #a blässt in flöte
-
+        show s8_3 p3
         "*fiiiiiieeeeeep*" #kind hält sich ohren zu
-
+        show s8_3 p4
         "*fiiiiiieeeeeep*" #b hält sich ohren zu
-
+        show s8_3 p5
         a "EEEH!" #s bäumt sich auf, a fällt
-
-        "..." #bulle bockt, rennt weg
-
-        b "..." #bulle rennt an b vorbei
-
-        "..." #bulle zerquetscht skorpion
-
-        "*BANG*" #e schießt
-
-        "..." #e reitet an b vorbei
-
-        "..." #e reitet an a vorbei
-
-        b "..." #b schaut auf skorpion
-
+        show s8_3 p6
+        ""
+        show s8_3 p7
+        "*BANG*" 
+        #sound bang
+        show s8_3 p8
+        "" 
+        show s8_3 p9
+        "" #e schießt
+        show s8_3 p10
+        "" 
+        show s8_3 p11
         e "Abigail, Kleines."
-
+        show s8_3 p14
         e "Deine Füße passen nicht in die Stiefel eines Sheriffs."
-
+        show s8_3 p12
+        a "Nein-"
+        a "Nein- aber-" 
+        a "Nein- aber- Papi-"
+        a "Nein- aber- Papi- ich-"
         a "Nein- aber- Papi- ich- das Pony-"
-
-        e "Is' meine Schuld Kleines. Billy! Wir fangen die Tiere."
-
-        a "..." #weint
-
-        b "..." #b wirft skorpion weg
-
+        show s8_3 p13
+        e "Is' meine Schuld Kleines."
+        show s8_3 p15 with dissolve 
+        e "Billy! Wir fangen die Tiere."
+        show s8_3 p16
+        "" #b wirft skorpion weg
+        show s8_3 p17
         b "Nein, Dad."
-
-        "..." #a und e schauen zu b
-
+        show s8_3 p18
+        "" 
+        show s8_3 p19
         b "Abbey hat sich hier voll reingesteigert."
-        b "Sie ist den Tieren einfach hinter her. Verdammt, sie hat den Stier lieber auf sich gezogen als auf die"
-        
+        show s8_3 p20
+        b "Sie ist den Tieren einfach hinter her."
+        show s8_3 p21
+        b "Verdammt, sie hat den Stier lieber auf sich gezogen als auf die"  
         b "ganzen erwachsenen Weicheier hier!" #e schaut zu a, a nickt
-
-        "..." #a umarmt b
-
+        show s8_3 p22
+        "" #a umarmt b
+        show s8_3 p23
+        ""
+        show s8_3 p24
         b "Wenn du mich fragst, macht genau das einen guten Sheriff aus."
+        show s8_3 p25
         b "Ich habs nichtmal über die Straße geschafft."
-
-        "..." #Bewohner schauen aus den türen raus
-
-        "..." #auch schmied
-
-        e "..." #e schaut zu b&a
-
-        e "Gut, Abbey. Fang das Pony. Billy, sattel dein Pferd."
-
-        e "Lasst uns ein paar Tiere fangen" #black stripes auf seine Augen
+        show s8_3 p26
+        "" #Bewohner schauen aus den türen raus
+        show s8_3 p27
+        "" #auch schmied
+        show s8_3 p28
+        ""
+        show s8_3 p29
+        ""
+        show s8_3 p30
+        e "Gut, Abbey. Fang das Pony."
+        show s8_3 p32
+        e "Billy, sattel dein Pferd."
+        show s8_3 p33
+        e "Lasst uns ein paar Tiere fangen"
+        
 
 #Szene 9
-    show s9 p1
+    show s9 p1 with fade
     "" #e schlägt weidentor zu
-    show s9 p2
+    show s9 p2 with dissolve
     "" #e setzt sich auf pferd
     show s9 p3
     "" #alle reiten in Sonnenuntergang
-    show s9 p4
+    show s9 p4 with dissolve
     ""
     return
