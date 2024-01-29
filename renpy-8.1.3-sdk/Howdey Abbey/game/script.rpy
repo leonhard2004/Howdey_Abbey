@@ -38,20 +38,28 @@ define n = Character('NACHBARIN', color="#61dfff")
 define k = Character('NACHBARSKIND', color="#9aff6b")
 define s = Character('SALONBESITZER', color="#811414")
 define d = Character('DORFBEWOHNER', color="#9b9b9b")
-
 #Du, Deine, Dich groß schreiben!
 # Hier beginnt das Spiel.
 label start:
 #Szene 1
+    python:
+        renpy.music.set_volume(0.4, 1, channel='music')
+    #stop music fadeout 3.0
     show s1 p1
+    play sound "/sounds/cutleryClinking.mp3" fadein 0.4 volume 1
     ""
+    python:
+        renpy.music.set_volume(0.4, 0.3, channel='sound')
     show s1 p2
     a "Uhm.. Papi?"
     a "Ich hab überlegt"
     show s1 p3
+    stop sound fadeout 1.0
     a "weil, also,"
     show s1 p4
     a "... ich bin ja jetzt schon sieben und wollte daher fragen ob ich-" #text evtl nacheinander erschienen lassen
+    stop music fadeout 0.3
+    play music "/sounds/hardJustice.mp3" fadein 1 volume 0.5  
     show s1 p5
     b "Und da geht das wieder los."
     show s1 p6
@@ -59,10 +67,17 @@ label start:
     show s1 p7
     a "Du bist nicht Papi."
     b "Muss ich auch nicht, um zu wissen, dass Du viel zu-"
+    python:
+        renpy.music.set_volume(0.1, 0, channel='music')
+        renpy.music.set_volume(1, 0.3, channel='sound')
+    play sound "/sounds/woodTableHit.mp3" volume 2
     show s1 p8
-    "*bumm*"
+    "*Bumm*"
+    python:
+        renpy.music.set_volume(0.1, 1, channel='music')
     show s1 p9
     e "Hört auf."
+    play sound "/sounds/tablespoon1.mp3"
     show s1 p10
     b "hmpf"
     show s1 p11
@@ -91,10 +106,14 @@ label start:
     e "Morgen Sonnenaufgang, hier. Ja?"
     show s1 p18
     "" #a nickt schnell
+    stop music fadeout 0.5
     
 
 #Szene 2
-    play music "Hayden Folker - The Journey.mp3" fadein 1.0 volume 0.5
+    python:
+        renpy.music.set_volume(1, 1, channel='music')
+    play music "/sounds/theJourney.mp3" fadein 1.0 volume 0.5
+    
     show s2 p1 with fade
     ""
     show s2 p2 
@@ -105,6 +124,7 @@ label start:
     "*bling*" #fokus auf E's stern
     show s2 p5
     "..." #fokus auf a's stern #punkt für punkt erscheinen
+    play sound "/sounds/horseTrotting.mp3" volume 0.5
     show s2 p6
     e "Morgen."
     show s2 p8
@@ -113,16 +133,21 @@ label start:
     a "Guten Morgen!"
     show s2 p9
     s "Guten Morgen Sheriff"
+    stop sound fadeout 0.5
 
 #Szene 3
+    play sound "/sounds/horseTrotting.mp3" volume 0.3 fadein 0.5
     show s3 p1 with fade
     "" #Weide
+    stop sound fadeout 0.5
     show s3 p2 with dissolve
     ""
     show s3 p3 with dissolve
     ""
     show s3 p4 with dissolve
     ""
+    python:
+        renpy.music.set_volume(0.1, 2, channel='music')
     show s3 p5
     e "So, Kleines."
     show s3 p6
@@ -131,10 +156,18 @@ label start:
     e "Mach mich stolz."
     show s3 p8
     "" #e steigt auf
+    python:
+        renpy.music.set_volume(0.5, 1, channel='music')
+    play sound "/sounds/horseTrotting.mp3" volume 0.3 fadein 0.5
     show s3 p9 with dissolve
     "" #beide tippen ihren hut
+    stop sound fadeout 0.5
+    stop music fadeout 0.5
 
 #Szene 4
+    python:
+        renpy.music.set_volume(1, 0, channel='music')
+    play music "/sounds/blueOn.mp3" volume 0.5
     show s4 p1 with fade
     pause
     show s4 p2 with dissolve
@@ -184,12 +217,17 @@ label start:
     
     #Szene 4.4
     label spielen2:
+        python:
+            renpy.music.set_volume(0, 0.5, channel='music')
+        play sound "<from 12>/sounds/recorder.mp3" fadein 0.5
         show s4_4 p1 with dissolve 
-        "*musik*" #a spielt mit flöte, läuft zaun entlang
+        "{font=freeSans.ttf}♩ ♪{/font}" #a spielt mit flöte, läuft zaun entlang
         show s4_4 p2 with dissolve
-        "*musik*"
+        "{font=freeSans.ttf}♪♪ ♩{/font}"
+        stop sound fadeout 0.5
         python:
             spielen2 = True
+            renpy.music.set_volume(1, 0.5, channel='music')
         menu:
             " "
             
@@ -204,10 +242,16 @@ label start:
                 jump warten
     #Szene 4.6
     label spielen3:
+        python:
+            renpy.music.set_volume(0, 0.5, channel='music')
+        play sound "<from 1 to 12>/sounds/recorder.mp3" fadein 0.5
         show s4_6 p1 with dissolve
-        "𝅘𝅥 𝅘𝅥𝅯𝅘𝅥𝅯" #a spielt mit flöte, läuft zaun entlang
+        "{font=freeSans.ttf}♩ ♪♩{/font}"  #a spielt mit flöte, läuft zaun entlang
         show s4_6 p2 with dissolve
-        "𝅘𝅥𝅯𝅘𝅥𝅮 𝅘𝅥𝅯" #s folgt ihr
+        "{font=freeSans.ttf}♪ ♪♪ ♩{/font}" #s folgt ihr
+        stop sound fadeout 0.5
+        python:
+            renpy.music.set_volume(1, 0.5, channel='music')
         jump pony
     #Szene 4.2
     label tiereFüttern1:
@@ -257,10 +301,11 @@ label start:
 
     #Szene 4.3
     label warten:
-        play music "A Nomad's Journey.mp3" fadein 1.0 volume 0.5
         show s4_3 p1
+        stop music fadeout 1.0
         "" #a liegt vor Zaun, Hut tief im Gesicht, Grashalm im Mund
     #Szene 5
+        play music "/sounds/flower.mp3" fadein 2.0
         show s5 p2 with fade
         "" 
         show s5 p3
@@ -283,18 +328,21 @@ label start:
         "*stups*" #a liegt vor Zaun, Hut tief im Gesicht, Grashalm im Mund
         show s4_7 p2 with dissolve
         a "hmm?" #s stupst a an
+        stop music fadeout 0.5
         jump szene6
      
     
 
 #Szene 6
 label szene6:
+    play music "sounds/theHardWay.mp3" volume 0.5 fadein 1.0
     show s6 p1 with fade
     "" #bulle schläft
     show s6 p2 with dissolve
     a "So sieht man sich wieder, Bulle Bill"
     show s6 p3
     a "Du hast die Milch von Paula Kuh geklaut. Dafür wirst Du jetzt-"
+    
     show s6 p4
     "" #bulle geht weg
     show s6 p7
@@ -306,16 +354,24 @@ label szene6:
     show s6 p8
     ""
     show s6 p9 with dissolve
-    play sound "flute.wav" fadein 0.4 volume 0.3
+    stop music fadeout 1.0
+    play sound "/sounds/flute.mp3" fadein 0.4 volume 0.3
     "*fiiiiiieeeeeep*" #s bäumt sich auf
+    stop sound
+    play music "/sounds/wokLikeACowboy.mp3" fadein 0.3 volume 0.4
     show s6 p10
     "" #bulle rennt
+    play sound "/sounds/stampede.mp3" loop
     show s6 p11
     a "AAAH!" #chaos
     show s6 p12
+    play audio "/sounds/woodShatter.mp3" volume 2.0
     "KRACH!" #bulle zerstört tor
     show s6 p13
     "" #a sitzt und fängt an zu weinen
+    stop sound fadeout 3.0
+    python:
+        renpy.music.set_volume(0.2, 0.5, channel='music')
     show s6 p14 with dissolve
     "" #s stupst a an
     show s6 p15
@@ -331,6 +387,9 @@ label szene6:
             jump szene8
 #Szene 7
     label szene7:
+        python:
+            renpy.music.set_volume(1, 0.5, channel='music')
+        play music "/sounds/houseOnARock.mp3" volume 0.6 fadein 1.0
         show s7 p2 with fade
         ""
         show s7 p3 with dissolve
@@ -350,14 +409,24 @@ label szene6:
         return
 #Szene 8    
     label szene8:
+        python:
+            renpy.music.set_volume(0.1, 0.5, channel='music')
+            renpy.music.set_volume(0.1, 0.5, channel='audio')
+        play audio "/sounds/stampede.mp3" loop 
         show s8_1 p1 with fade
         b "da da dam daaa da dam" 
         show s8_1 p2 with dissolve
+        python:
+            renpy.music.set_volume(1, 0.5, channel='audio')
         d "AAAAHHH! Hilfe!" #geschrei vom dorfeingang
+        python:
+            renpy.music.set_volume(1, 1.5, channel='music')
+        
         show s8_1 p3 with dissolve
-        "" #tiere rennen durch dorf
+        "" #tiere rennen durch dorf 
         show s8_1 p4
         ""
+        play audio "/sounds/woodShatter.mp3" volume 2.0
         show s8_1 p5
         ""
         show s8_1 p6
@@ -390,12 +459,17 @@ label szene6:
     label szene8_2:
         show s8_2 p1
         a "BULLE-BILL!!! ZUERST DIE MILCH VON PAULA-KUH UND NUN DA-!!"
+        play sound "/sounds/stampede.mp3" volume 1.5 loop
         show s8_2 p2
-        "" #a greift zur flöte
+        ""
         show s8_2 p3
         ""
+        stop music fadeout  0.5
+        
         show s8_2 p4 with fade
         a "WAHHHHH!!!!"
+        stop sound fadeout 0.5
+        play music "/sounds/recorder.mp3"
         show s8_2 p5 with fade
         ""
         return
@@ -403,23 +477,35 @@ label szene6:
         show s8_3 p1
         ""
         show s8_3 p2
-        play sound "flute.wav" fadein 0.4 volume 0.3
+        python:
+            renpy.music.set_volume(0.3, 0.4, channel='music')
+        play sound "/sounds/flute.mp3" fadein 0.4 volume 0.7
         "*fiiiiiieeeeeep*" #a blässt in flöte
         show s8_3 p3
+        play sound "/sounds/flute.mp3" if_changed volume 0.7
         "*fiiiiiieeeeeep*" #kind hält sich ohren zu
         show s8_3 p4
+        play sound "/sounds/flute.mp3" if_changed volume 0.7
         "*fiiiiiieeeeeep*" #b hält sich ohren zu
         show s8_3 p5
+        python:
+            renpy.music.set_volume(1, 1, channel='music')
         a "EEEH!" #s bäumt sich auf, a fällt
+        play audio "/sounds/woodShatter.mp3" volume 0.5
+        stop music fadeout 4.0
         show s8_3 p6
         ""
+        play sound "/sounds/gunshot.mp3"
+        stop audio fadeout 3.0
+        play music [ "<silence 1>", "/sounds/hardJustice.mp3" ] volume 0.5 fadein 0.5
         show s8_3 p7
         "*BANG*" 
         #sound bang
+        
         show s8_3 p8
-        "" 
+        ""
         show s8_3 p9
-        "" #e schießt
+        ""
         show s8_3 p10
         "" 
         show s8_3 p11
@@ -439,6 +525,9 @@ label szene6:
         show s8_3 p16
         "" #b wirft skorpion weg
         show s8_3 p17
+        python:
+            renpy.music.set_volume(0.2, 0.5, channel='music')
+        play music "<from 15>/sounds/theHardWay.mp3" volume 0.5 fadein 1.0 fadeout 1.0
         b "Nein, Dad."
         show s8_3 p18
         "" 
@@ -447,8 +536,7 @@ label szene6:
         show s8_3 p20
         b "Sie ist den Tieren einfach hinter her."
         show s8_3 p21
-        b "Verdammt, sie hat den Stier lieber auf sich gezogen als auf die"  
-        b "ganzen erwachsenen Weicheier hier!" #e schaut zu a, a nickt
+        b "Verdammt, sie hat den Stier lieber auf sich gezogen als auf die ganzen erwachsenen Weicheier hier!"  
         show s8_3 p22
         "" #a umarmt b
         show s8_3 p23
@@ -457,6 +545,7 @@ label szene6:
         b "Wenn du mich fragst, macht genau das einen guten Sheriff aus."
         show s8_3 p25
         b "Ich habs nichtmal über die Straße geschafft."
+        
         show s8_3 p26
         "" #Bewohner schauen aus den türen raus
         show s8_3 p27
@@ -467,6 +556,8 @@ label szene6:
         ""
         show s8_3 p30
         e "Gut, Abbey. Fang das Pony."
+        python:
+            renpy.music.set_volume(1, 1, channel='music')
         show s8_3 p32
         e "Billy, sattel dein Pferd."
         show s8_3 p33
@@ -474,6 +565,7 @@ label szene6:
         
 
 #Szene 9
+    
     show s9 p1 with fade
     "" #e schlägt weidentor zu
     show s9 p2 with dissolve
